@@ -1,27 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './GameGrid.css'
 
 const TRIES = 6;
 
 export default function GameGrid({ gameData }) {
-  const word = gameData.word;
-  const level = gameData.level;
-  const triesArray = new Array(TRIES);
+  const [currentWord, setCurrentWord] = useState('');
+  const [triesArray, setTriesArray] = useState([]);
   const [tries, setTries] = useState(0);
 
-  function updateTriesArray(tryWord, index) {
-    triesArray.splice(index, 1, tryWord);
-    console.log(triesArray);
-  }
+  useEffect(() => {
+    if (gameData) {
+      setCurrentWord(gameData.words[gameData.level - 1]);
+    }
+  }, [gameData]);
+
+  const checkWord = useCallback((tryWord) => {
+    return tryWord === currentWord;
+  }, [currentWord]);
 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const letters = Array.from(formData.values()).join('');
     setTries(tries + 1);
-    updateTriesArray(letters);
+    setTriesArray([...triesArray, gameData.words[gameData.level - 1][0] + letters]);
     e.target.reset();
     e.target[0].focus();
+    if (checkWord(letters)) {
+      alert('You won');
+    }
   }
 
   const checkLetter = (letter) => {
@@ -59,22 +66,26 @@ export default function GameGrid({ gameData }) {
 
   return (
     <div className='game-grid'>
+      <div className='tries'>
+        {triesArray.map((tryWord, index) => (
+          <span key={index}>{tryWord}</span>
+        ))}
+      </div>
       <form onSubmit={handleSubmit}>
-        {word.split('').map((letter, index) => (
-          <div key={index} className='letter-box'>
-            <input
-              autoFocus={index === 0}
-              type='text'
-              className='letter-input'
-              maxLength='1'
-              name={`letter-${index}`}
-              id={`letter-${index}`}
-              placeholder='.'
-              required
-              onChange={(e) => handleInputChange(e, index)}
-              onKeyDown={detectErasedLetter}
-            />
-          </div>
+        <span id='first-letter'>
+          {currentWord[0]}
+        </span>
+        {currentWord.slice(1).split('').map((letter, index) => (
+          <input
+            key={index}
+            type='text'
+            id={`letter-${index}`}
+            name={`letter-${index}`}
+            maxLength='1'
+            onChange={(e) => handleInputChange(e, index)}
+            onKeyDown={detectErasedLetter}
+            autoFocus={index === 0}
+          />
         ))}
         <button id='submitWord' type='submit'>Submit</button>
       </form>

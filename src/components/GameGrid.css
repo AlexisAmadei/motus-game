@@ -17,6 +17,16 @@ input {
     text-shadow: 0 0 0 white;
 }
 
+#first-letter {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 5px;
+}
+
 button#submitWord {
     display: none;
 }
