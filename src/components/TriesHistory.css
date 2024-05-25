@@ -1,0 +1,30 @@
+.try {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 1px 2px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+span.misplaced {
+    border-radius: 9999px;
+    background-color: #f7b735;
+}
+
+span.correct {
+    background-color: #db3a34;
+}

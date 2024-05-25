@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import './GameGrid.css'
+import TriesHistory from './TriesHistory';
 
 const TRIES = 6;
 
@@ -66,17 +67,7 @@ export default function GameGrid({ gameData }) {
 
   return (
     <div className='game-grid'>
-      <div className='tries'>
-        {triesArray.map((tryWord) => (
-          <div key={tryWord} className='try'>
-            {tryWord.split('').map((letter, index) => (
-              <span key={index} className='letter'>
-                {letter}
-              </span>
-            ))}
-          </div>
-        ))}
-      </div>
+      <TriesHistory triesArray={triesArray} />
       <form onSubmit={handleSubmit}>
         <span id='first-letter'>
           {currentWord[0]}
