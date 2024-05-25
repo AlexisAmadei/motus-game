@@ -67,8 +67,14 @@ export default function GameGrid({ gameData }) {
   return (
     <div className='game-grid'>
       <div className='tries'>
-        {triesArray.map((tryWord, index) => (
-          <span key={index}>{tryWord}</span>
+        {triesArray.map((tryWord) => (
+          <div key={tryWord} className='try'>
+            {tryWord.split('').map((letter, index) => (
+              <span key={index} className='letter'>
+                {letter}
+              </span>
+            ))}
+          </div>
         ))}
       </div>
       <form onSubmit={handleSubmit}>
