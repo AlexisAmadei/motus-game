@@ -5,27 +5,20 @@ export default function TriesHistory({ triesArray }) {
   const gameData = JSON.parse(localStorage.getItem('gameData'));
   const secretWords = gameData.words;
   const level = gameData.level;
-  const [validationArray, setValidationArray] = useState([]);
-
-  function validateLetter(letter) {
-    if (secretWords[level - 1].includes(letter)) {
-      return true;
-    }
-    return false;
-  }
+  const [validationHistory, setValidationHistory] = useState([]);
 
   function wordValidation(word) {
     const newValidationArray = [];
-    word.split('').forEach(letter => {
-      if (letter === word[0]) {
+    word.split('').forEach((letter, index) => {
+      if (letter === secretWords[level - 1][index]) {
         newValidationArray.push('correct');
-      } else if (validateLetter(letter)) {
+      } else if (secretWords[level - 1].includes(letter)) {
         newValidationArray.push('misplaced');
       } else {
         newValidationArray.push('incorrect');
       }
     });
-    setValidationArray(newValidationArray);
+    setValidationHistory(prevHistory => [...prevHistory, newValidationArray]);
   }
 
   useEffect(() => {
@@ -37,9 +30,9 @@ export default function TriesHistory({ triesArray }) {
   return (
     <div className='history'>
       {triesArray.map((word, index) => (
-        <div className='try'>
-          {word.split('').map((letter, index) => (
-            <span key={index} className={validationArray[index]}>{letter.toUpperCase()}</span>
+        <div className='try' key={index}>
+          {word.split('').map((letter, letterIndex) => (
+            validationHistory[index] && <span key={letterIndex} className={validationHistory[index][letterIndex]}>{letter.toUpperCase()}</span>
           ))}
         </div>
       ))}

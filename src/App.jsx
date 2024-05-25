@@ -11,6 +11,10 @@ export default function App() {
     words: [],
   })
 
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
   const fetchWords = useCallback(async () => {
     const words = await secretWords();
     console.debug('words fetched');

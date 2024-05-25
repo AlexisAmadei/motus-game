@@ -39,6 +39,7 @@ export default function GameGrid({ gameData }) {
 
   function handleInputChange(e, index) {
     if (e.target.value) {
+      e.target.value = e.target.value;
       if (!checkLetter(e.target.value)) {
         e.target.value = '';
         return;
@@ -68,25 +69,27 @@ export default function GameGrid({ gameData }) {
   return (
     <div className='game-grid'>
       <TriesHistory triesArray={triesArray} />
-      <form onSubmit={handleSubmit}>
-        <span id='first-letter'>
-          {currentWord[0]}
-        </span>
-        {currentWord.slice(1).split('').map((letter, index) => (
-          <input
-            key={index}
-            type='text'
-            id={`letter-${index}`}
-            name={`letter-${index}`}
-            maxLength='1'
-            onChange={(e) => handleInputChange(e, index)}
-            onKeyDown={detectErasedLetter}
-            autoFocus={index === 0}
-          />
-        ))}
-        <button id='submitWord' type='submit'>Submit</button>
-      </form>
+      {currentWord && (
+        <form onSubmit={handleSubmit}>
+          <span id='first-letter'>
+            {currentWord[0].toUpperCase()}
+          </span>
+          {currentWord.slice(1).split('').map((letter, index) => (
+            <input
+              key={index}
+              type='text'
+              id={`letter-${index}`}
+              name={`letter-${index}`}
+              maxLength='1'
+              onChange={(e) => handleInputChange(e, index)}
+              onKeyDown={detectErasedLetter}
+              autoFocus={index === 0}
+              autoComplete='off'
+            />
+          ))}
+          <button id='submitWord' type='submit'>Submit</button>
+        </form>
+      )}
     </div>
   )
-
 }

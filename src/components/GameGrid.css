@@ -12,6 +12,8 @@ input {
     border-radius: 5px;
     margin: 5px;
     padding: 1px 2px;
+    font-weight: bold;
+    font-size: 30px;
 
     /* Effect to hide cursor */
     color: transparent;
@@ -21,7 +23,8 @@ input {
 #first-letter {
     width: 50px;
     height: 50px;
-    font-size: 20px;
+    font-weight: bold;
+    font-size: 30px;
     text-align: center;
     border: 1px solid #000;
     border-radius: 5px;
@@ -30,6 +33,7 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #db3a34;
 }
 
 button#submitWord {
