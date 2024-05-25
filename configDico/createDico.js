@@ -1,5 +1,8 @@
 import { readFile, writeFile } from 'fs/promises';
 
+const WORD_LIST = 'fr.txt';
+
+// read file
 async function processFile(entryPath) {
     try {
         const data = await readFile(entryPath, 'utf8');
@@ -12,9 +15,10 @@ async function processFile(entryPath) {
     }
 }
 
+// clean data by removing unwanted words
 async function cleanData(data) {
     const cleanedData = [];
-    const regEx = /^[a-zA-Z]*$/; // Only letters
+    const regEx = /^[a-zA-Z]*$/;
     data.forEach(line => {
         if (line.length > 3 && line.length < 11 && regEx.test(line) ) {
             cleanedData.push(line);
@@ -23,7 +27,6 @@ async function cleanData(data) {
     console.log('## - Data cleaned');
     return cleanedData;
 }
-
 async function main() {
     const rawData = await processFile('fr.txt');
     const cleanedData = await cleanData(rawData);
