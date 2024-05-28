@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import secretWords from './utils/secretWords'
-import GameGrid from './components/GameGrid'
+import GameGrid from './components/GameGrid/GameGrid'
 import './styles/App.css'
+import Landing from './view/Landing';
 
 export default function App() {
   const gameId = "id" + Math.random().toString(16).slice(2);
@@ -43,8 +44,9 @@ export default function App() {
   }, [storeGameData]);
 
   return (
-    <div className='app-wrapper'>
-      {!gameStarted && (
+    <div className='app-container'>
+      <Landing />
+      {/* {!gameStarted && (
         <div className='pre-game'>
           <button type='button' name='start-game' id='start-game' onClick={handleGameStart}>Start game</button>
         </div>
@@ -53,7 +55,7 @@ export default function App() {
         <div className='game-started'>
           <GameGrid gameData={gameData} />
         </div>
-      )}
+      )} */}
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import './GameGrid.css'
-import TriesHistory from './TriesHistory';
+import TriesHistory from '../TriesHistory/TriesHistory';
 
 const TRIES = 6;
 

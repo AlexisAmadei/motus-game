@@ -12,7 +12,6 @@ span {
     height: 50px;
     font-size: 20px;
     text-align: center;
-    border: 1px solid #000;
     border-radius: 5px;
     margin: 5px;
     padding: 1px 2px;
@@ -27,4 +26,8 @@ span.misplaced {
 
 span.correct {
     background-color: #db3a34;
+}
+
+span.incorrect {
+    border: 1px solid #000;
 }

@@ -6,6 +6,8 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  --red-primary: #db3a34;
+  --yellow-primary: #f7b735;
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -47,10 +49,6 @@ button {
 }
 button:hover {
   border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {
