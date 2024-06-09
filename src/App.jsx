@@ -1,5 +1,5 @@
 import './styles/App.css'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import Landing from './view/Landing';
 import uniqueIds from './utils/uniqueIds';
