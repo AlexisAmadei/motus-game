@@ -1,61 +1,33 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import secretWords from './utils/secretWords'
-import GameGrid from './components/GameGrid/GameGrid'
 import './styles/App.css'
+import React, { useEffect, useState } from 'react'
+
 import Landing from './view/Landing';
+import uniqueIds from './utils/uniqueIds';
+
+import { getCookie, storeCookie } from './utils/cookies';
+import { db } from '../firebase/config';
+import { doc, setDoc } from 'firebase/firestore';
 
 export default function App() {
-  const gameId = "id" + Math.random().toString(16).slice(2);
-  const [gameStarted, setGameStarted] = useState(false);
-  const [gameData, setGameData] = useState({
-    level: 1,
-    words: [],
-  })
+  async function storeIdInDb() {
+    const userId = getCookie('userId');
+    await setDoc(doc(db, 'users', userId), {
+      username: 'anonymous',
+    });
+  }
 
   useEffect(() => {
-    localStorage.clear();
-  }, []);
-
-  const fetchWords = useCallback(async () => {
-    const words = await secretWords();
-    console.debug('words fetched');
-    setGameData(prevGameData => ({
-      ...prevGameData,
-      words,
-    }));
-  }, []);
-
-  useEffect(() => {
-    fetchWords();
-  }, [fetchWords]);
-
-  const storeGameData = useCallback(() => {
-    const data = {
-      gameId: gameId,
-      level: gameData.level,
-      words: gameData.words,
+    if (!getCookie('userId')) {
+      const userId = uniqueIds();
+      storeCookie('userId', userId);
+      storeIdInDb();
+      console.log('User id cookie set');
     }
-    localStorage.setItem('gameData', JSON.stringify(data));
-  }, [gameId, gameData]);
-
-  const handleGameStart = useCallback(() => {
-    storeGameData();
-    setGameStarted(true);
-  }, [storeGameData]);
+  }, []);
 
   return (
     <div className='app-container'>
       <Landing />
-      {/* {!gameStarted && (
-        <div className='pre-game'>
-          <button type='button' name='start-game' id='start-game' onClick={handleGameStart}>Start game</button>
-        </div>
-      )}
-      {gameStarted && (
-        <div className='game-started'>
-          <GameGrid gameData={gameData} />
-        </div>
-      )} */}
     </div>
   )
 }
