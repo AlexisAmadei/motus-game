@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './UserDisplay.css'
 import EditIcon from '@mui/icons-material/Edit';
+import CheckIcon from '@mui/icons-material/Check';
 import { getCookie } from '../../utils/cookies';
 import { retrieveDbUser, updatesDbUser } from '../../utils/users';
 
@@ -33,11 +34,11 @@ export default function UserDisplay() {
       {pseudoInput && (
         <div className='pseudo-input'>
           <input type='text' value={username} onChange={handlePseudoChange} />
-          <button type='button' onClick={updateUsername}>OK</button>
+          <CheckIcon id='check' onClick={updateUsername} />
         </div>
       )}
       {!pseudoInput && username && (
-        <div className='user-display' onClick={() => setPseudoInput(true)}>
+        <div className='username' onClick={() => setPseudoInput(true)}>
           <p>Pseudo: {username}</p>
           <EditIcon />
         </div>

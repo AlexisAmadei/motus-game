@@ -12,7 +12,7 @@ export default function App() {
   async function storeIdInDb() {
     const userId = getCookie('userId');
     await setDoc(doc(db, 'users', userId), {
-      username: 'anonymous',
+      username: 'invité',
     });
   }
 

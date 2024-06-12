@@ -1,14 +1,18 @@
 .user-display {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 }
 
 .pseudo-input {
-    margin-top: 24px;
+    /* margin-top: 24px; */
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
     gap: 8px;
+    align-items: center;
+    padding: 8px;
 }
 
 .pseudo-input input {
@@ -18,4 +22,32 @@
     text-align: center;
     background: white;
     color: black;
+}
+
+.pseudo-input #check {
+    color: white;
+    background-color: var(--red-primary);
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.username {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: bold;
+    border-radius: 50px;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    color: white;
+    background-color: var(--red-primary);
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.username:hover {
+    background-color: var(--yellow-primary);
+    transform: scale(1.05);
 }

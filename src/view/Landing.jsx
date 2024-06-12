@@ -54,8 +54,8 @@ export default function Landing() {
           <span className='correct'>O</span>
         </div>
         <div className='menu'>
-          <button type='button' name='create-game' id='create-game' onClick={handleCreateGame}>START GAME</button>
-          <button type='button' name='join-game' id='join-game' onClick={handleJoinGame}>JOIN GAME</button>
+          <button type='button' name='create-game' id='create-game' onClick={handleCreateGame}>PARTIE SOLO</button>
+          <button type='button' name='join-game' id='join-game' onClick={handleJoinGame}>MULTIJOUEUR</button>
           <UserDisplay />
         </div>
       </div>
