@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import './styles/Landing.css'
 import '../components/TriesHistory/TriesHistory.css'
-import secretWords from '../utils/secretWords'
 import UserDisplay from '../components/UserDisplay/UserDisplay';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../components/Logo/Logo';
