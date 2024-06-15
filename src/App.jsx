@@ -1,12 +1,12 @@
 import './styles/App.css'
 import React, { useEffect } from 'react'
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase/config';
 
 import Landing from './view/Landing';
 import uniqueIds from './utils/uniqueIds';
-
 import { getCookie, storeCookie } from './utils/cookies';
-import { db } from '../firebase/config';
-import { doc, setDoc } from 'firebase/firestore';
+
 
 export default function App() {
   async function storeIdInDb() {

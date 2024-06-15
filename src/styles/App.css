@@ -3,8 +3,9 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  /* height: 100vh; */
+  height: 100vh;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .app-container {
@@ -12,6 +13,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  height: 100%;
 }
 
 .view-container {
@@ -19,4 +21,6 @@
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: column;
+  height: 100%;
+  width: 50%;
 }
