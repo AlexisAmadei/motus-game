@@ -8,12 +8,17 @@ import { retrieveDbUser, updatesDbUser } from '../../utils/users';
 export default function UserDisplay() {
   const [pseudoInput, setPseudoInput ] = useState(false);
   const [username, setUsername] = useState('anonymous');
+  const [errorDisplay, setErrorDisplay] = useState('');
 
   const handlePseudoChange = (e) => {
     setUsername(e.target.value);
   }
 
   const updateUsername = () => {
+    if (!username) {
+      setErrorDisplay('Pseudo vide');
+      return;
+    }
     localStorage.setItem('username', username);
     updatesDbUser(username, getCookie('userId'));
     setPseudoInput(false);
@@ -33,7 +38,7 @@ export default function UserDisplay() {
     <div className='user-display'>
       {pseudoInput && (
         <div className='pseudo-input'>
-          <input type='text' value={username} onChange={handlePseudoChange} />
+          <input title='user-input' type='text' value={username} onChange={handlePseudoChange} placeholder='invité' />
           <CheckIcon id='check' onClick={updateUsername} />
         </div>
       )}
