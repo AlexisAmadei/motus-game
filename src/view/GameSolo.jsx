@@ -4,7 +4,6 @@ import './styles/GameSolo.css';
 import GameGrid from '../components/GameGrid/GameGrid';
 import secretWords from '../utils/secretWords';
 import Clavier from '../components/Clavier/Clavier';
-import { Keyboard } from '@mui/icons-material';
 
 export default function GameSolo() {
   const gameId = "id" + Math.random().toString(16).slice(2);
