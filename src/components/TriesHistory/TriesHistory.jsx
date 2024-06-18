@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './TriesHistory.css';
 
 export default function TriesHistory({ triesArray }) {
@@ -6,18 +6,23 @@ export default function TriesHistory({ triesArray }) {
   const secretWords = gameData.words;
   const level = gameData.level;
   const [validationHistory, setValidationHistory] = useState([]);
+  const [keyboardValidation, setKeyboardValidation] = useState({});
 
   function wordValidation(word) {
     const newValidationArray = [];
     word.split('').forEach((letter, index) => {
       if (letter === secretWords[level - 1][index]) {
         newValidationArray.push('correct');
+        setKeyboardValidation(prevState => ({ ...prevState, [letter]: 'correct' }));
       } else if (secretWords[level - 1].includes(letter)) {
         newValidationArray.push('misplaced');
+        setKeyboardValidation(prevState => ({ ...prevState, [letter]: 'misplaced' }));
       } else {
         newValidationArray.push('incorrect');
+        setKeyboardValidation(prevState => ({ ...prevState, [letter]: 'incorrect' }));
       }
     });
+    localStorage.setItem('keyboardValidation', JSON.stringify(keyboardValidation));
     setValidationHistory(prevHistory => [...prevHistory, newValidationArray]);
   }
 

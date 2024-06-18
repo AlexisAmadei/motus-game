@@ -1,0 +1,33 @@
+.keyboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 24px;
+}
+
+.keyboard .key-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.keyboard .key-row .key {
+    height: 2.6rem;
+    width: 1.4rem;
+    border: 1px solid white;
+    border-radius: .40rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    padding: 4px 8px;
+}
+
+.keyboard .key-row .key:hover {
+    cursor: default;
+}

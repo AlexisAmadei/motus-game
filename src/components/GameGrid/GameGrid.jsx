@@ -57,7 +57,7 @@ export default function GameGrid({ gameData }) {
 
   function handleInputChange(e, index) {
     if (e.target.value) {
-      e.target.value = e.target.value.toUpperCase();
+      e.target.value = e.target.value;
       if (!checkLetter(e.target.value)) {
         e.target.value = '';
         return;
